@@ -1,14 +1,3 @@
-$(function(){
-  $('.js-next').on('click', function(e){
-    e.preventDefault
-   var nextId = parseInt($('.js-next').attr('data-id')) + 1
-   $.get("/pins/" + nextId + ".json", function(data) {
-    var pin = new Pin(data)
-    });
-  })
-})
-
-
 function Pin(attributes) {
   this.description = attributes.description
   this.userId = attributes.user_id
@@ -19,3 +8,24 @@ function Pin(attributes) {
   this.imageUpdatedAt = attributes.image_updated_at
 }
 
+
+Pin.prototype.renderDisplay = function() {
+  return Pin.template(this) // returns the object (pin) itself
+}
+
+$(function(){
+  Pin.templateSource = $("#pin-template").html() // grabs source of template
+  Pin.template = Handlebars.compile(Pin.templateSource) // Handlebars compiles the given template
+})
+
+$(function(){
+  $('.js-next').on('click', function(e){
+    e.preventDefault
+   var nextId = parseInt($('.js-next').attr('data-id')) + 1
+   $.get("/pins/" + nextId + ".json", function(data) {
+    var pin = new Pin(data)
+    var pinDisplay = pin.renderDisplay()
+    $('#pinResults').html(pinDisplay)
+    });
+  })
+})
