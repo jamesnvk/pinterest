@@ -10,6 +10,11 @@ class PinsController < ApplicationController
 
 
   def show
+    @pin = Pin.find(params[:id])
+      respond_to do |format|
+        format.html {render :show}
+        format.json {render json: @pin}
+      end
   end
 
 
