@@ -1,5 +1,5 @@
 <%= link_to 'Back', pins_path %><br>
-<%= link_to 'Next Pin', root_path, class: "js-next", data: {id: @pin.id} %>
+<%= link_to 'Next Pin', '#', class: "js-next", data: {id: @pin.id} %>
 
 <div id="pinResults">
   <div class="row">
@@ -24,3 +24,21 @@
     </div>
   </div>
 </div>
+
+<script id="pin-template" type="text/x-handlebars-template">
+   <div id="pinResults">
+    <div class="row">
+      <div class="col-md-offset-2 col-md-8">
+        <div class="panel panel-default">
+          <div class="panel-heading center">
+          </div>
+          <div class="panel-body">
+            <p>{{description}}</p>
+            <p>Pin id: {{id}}
+            
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</script>
