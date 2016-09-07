@@ -26,6 +26,7 @@ $(function(){
     var pin = new Pin(data)
     var pinDisplay = pin.renderDisplay()
     $('#pinResults').html(pinDisplay)
+    $('.js-next').attr('data-id', data['id'])
     });
   })
 })
