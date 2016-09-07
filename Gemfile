@@ -18,6 +18,7 @@ gem 'aws-sdk', '< 2.0'
 gem 'masonry-rails'
 gem 'will_paginate', '~> 3.0.6'
 gem 'will_paginate-bootstrap'
+gem 'active_model_serializers'
 
 
 group :development, :test do
