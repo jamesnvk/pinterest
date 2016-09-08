@@ -6,6 +6,7 @@ function Pin(attributes) {
   this.imageContentType = attributes.image_content_type
   this.imageFileSize = attributes.image_file_size
   this.imageUpdatedAt = attributes.image_updated_at
+  this.username = attributes.user.name
 }
 
 
@@ -40,6 +41,7 @@ $(function(){
     var nextPinLoad = lastId - 1
     $.get("/pins/" + nextPinLoad + ".json", function(data){
       var pin = new Pin(data)
+      debugger;
       var pinDisplay = pin.renderDisplay()
       $('#pins').append(pinDisplay)
     })

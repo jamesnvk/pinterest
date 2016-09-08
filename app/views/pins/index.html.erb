@@ -31,6 +31,10 @@
 </div>
 
 <script id="pin-template" type="text/x-handlebars-template">
-    {{description}}
-    {{id}}
+  <div class="box panel panel-default" id="pin" data-id="{{id}}">
+    <div class="panel-body">
+      {{description}}<br/>
+      <strong>{{username}}</strong>
+      </div>
+    </div>
 </script>
