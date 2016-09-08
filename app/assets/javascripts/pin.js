@@ -18,6 +18,7 @@ $(function(){
   Pin.template = Handlebars.compile(Pin.templateSource) // Handlebars compiles the given template
 })
 
+//show page next pin
 $(function(){
   $('.js-next').on('click', function(e){
     e.preventDefault
@@ -28,5 +29,19 @@ $(function(){
     $('#pinResults').html(pinDisplay)
     $('.js-next').attr('data-id', data['id'])
     });
+  })
+})
+
+//index page load more
+$(function(){
+  $('#load-more').on('click', function(e){
+    e.preventDefault
+    var lastId = parseInt($('#pins #pin').last().attr('data-id'))
+    var nextPinLoad = lastId - 1
+    $.get("/pins/" + nextPinLoad + ".json", function(data){
+      var pin = new Pin(data)
+      var pinDisplay = pin.renderDisplay()
+      $('#pins').append(pinDisplay)
+    })
   })
 })

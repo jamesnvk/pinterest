@@ -1,29 +1,36 @@
 <%= render 'pages/home' unless user_signed_in? %>
 
 <div id="pins" class="transitions-enabled">
-  <% @pins.each do |pin| %>
-    <div class="box panel panel-default">
-      <%= link_to image_tag(pin.image.url(:medium)), pin %>
-      <div class="panel-body">
-        <%= pin.description %><br/>
-        <strong><%= pin.user.name if pin.user %></strong>
+    <% @pins.each do |pin| %>
+      <div class="box panel panel-default" id="pin" data-id="<%=pin.id%>">
+        <%= link_to image_tag(pin.image.url(:medium)), pin %>
+        <div class="panel-body">
+          <%= pin.description %><br/>
+          <strong><%= pin.user.name if pin.user %></strong>
 
-        <% if pin.user == current_user %>
-          <div class="actions">
-            <%= link_to edit_pin_path(pin) do %>
-            <span class="glyphicon glyphicon-edit"></span> 
-            Edit
-            <% end %>
-            <%= link_to pin, method: :delete, data: { confirm: 'Are you sure?' } do %>
-              <span class="glyphicon glyphicon-trash"></span> Delete
-            <% end %>
-          </div>
-        <% end %>
+          <% if pin.user == current_user %>
+            <div class="actions">
+              <%= link_to edit_pin_path(pin) do %>
+              <span class="glyphicon glyphicon-edit"></span> 
+              Edit
+              <% end %>
+              <%= link_to pin, method: :delete, data: { confirm: 'Are you sure?' } do %>
+                <span class="glyphicon glyphicon-trash"></span> Delete
+              <% end %>
+            </div>
+          <% end %>
+        </div>
       </div>
-    </div>
-  <% end %>
-</div>
+    <% end %>
+  </div>
+
+
 
 <div class="center">
-  <%= will_paginate @posts, renderer: BootstrapPagination::Rails %>
+  <button class="btn btn-success" id="load-more">Load more pins</button>
 </div>
+
+<script id="pin-template" type="text/x-handlebars-template">
+    {{description}}
+    {{id}}
+</script>
