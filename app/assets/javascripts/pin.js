@@ -14,6 +14,15 @@ Pin.prototype.renderDisplay = function() {
   return Pin.template(this) // returns the object (pin) itself
 }
 
+function nextPinLoad(pinNumber){
+  $.get("/pins/" + pinNumber + ".json", function(data){
+    var pin = new Pin(data)
+    //debugger;
+    var pinDisplay = pin.renderDisplay()
+    $('#pins').append(pinDisplay)
+  })
+}
+
 $(function(){
   Pin.templateSource = $("#pin-template").html() // grabs source of template
   Pin.template = Handlebars.compile(Pin.templateSource) // Handlebars compiles the given template
@@ -33,17 +42,16 @@ $(function(){
   })
 })
 
-//index page load more
+//index page load more button
 $(function(){
   $('#load-more').on('click', function(e){
     e.preventDefault
     var lastId = parseInt($('#pins #pin').last().attr('data-id'))
-    var nextPinLoad = lastId - 1
-    $.get("/pins/" + nextPinLoad + ".json", function(data){
-      var pin = new Pin(data)
-      debugger;
-      var pinDisplay = pin.renderDisplay()
-      $('#pins').append(pinDisplay)
-    })
+    var pinOne = lastId - 1
+    nextPinLoad(pinOne)
+    var pinTwo = lastId - 2
+    nextPinLoad(pinTwo)
+    var pinThree = lastId - 3
+    nextPinLoad(pinThree)
   })
 })
