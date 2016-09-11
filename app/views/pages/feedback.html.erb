@@ -16,7 +16,7 @@
 
 
 <% if user_signed_in? %>
-  <%= form_for @comment do |f| %>
+  <%= form_for @comment, url: '/feedback' do |f| %>
     <%= f.text_area :content %><br></br>
     <%= f.submit %>
     <% end %>
