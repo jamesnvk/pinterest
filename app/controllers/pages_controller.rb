@@ -4,4 +4,8 @@ class PagesController < ApplicationController
 
   def about
   end
+
+  def feedback
+    @comment = Comment.new
+  end
 end
