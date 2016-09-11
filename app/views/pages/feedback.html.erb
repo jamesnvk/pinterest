@@ -1,3 +1,20 @@
+<table class="table table-striped">
+  <thead>
+    <tr> 
+      <th>#</th> <th>Username</th> <th>Comment</th>
+    </tr> 
+  </thead> 
+  <tbody>
+    <% @comments.each do |comment| %>
+     <tr> 
+        <th scope="row"><%= comment.id %></th> 
+        <td><%= comment.username %></td> <td><%= comment.content %></td> 
+    </tr>
+    <% end %>
+   </tbody>
+</table>
+
+
 <% if user_signed_in? %>
   <%= form_for @comment do |f| %>
     <%= f.text_area :content %><br></br>
@@ -6,3 +23,12 @@
 <% else %>
   <h4> Please <%= link_to "Login", new_user_session_path %> to submit feedback. Thank you! </h4>
 <% end %>
+
+<script id="comment-template" type="text/x-handlebars-template">
+    <tr>
+      <h1>{{title}}</h1>
+      <div class="body">
+        {{body}}
+      </div>
+    </div>
+</script>
