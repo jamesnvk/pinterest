@@ -19,6 +19,7 @@ gem 'masonry-rails'
 gem 'will_paginate', '~> 3.0.6'
 gem 'will_paginate-bootstrap'
 gem 'active_model_serializers'
+gem 'pry'
 
 
 group :development, :test do

@@ -1,5 +1,8 @@
-
-<%= form_for @comment do |f| %>
-  <%= f.text_field :content %><br></br>
-  <%= f.submit %>
-  <% end %>
+<% if user_signed_in? %>
+  <%= form_for @comment do |f| %>
+    <%= f.text_area :content %><br></br>
+    <%= f.submit %>
+    <% end %>
+<% else %>
+  <h4> Please <%= link_to "Login", new_user_session_path %> to submit feedback. Thank you! </h4>
+<% end %>
