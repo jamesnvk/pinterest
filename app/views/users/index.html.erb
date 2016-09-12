@@ -1,13 +1,10 @@
+
 <% @users.all.each do |u| %>
-  <li><%= u.name %></li>
-  <button class="btn btn-default" id="load-more">Load comments</button>
+    <li><%= u.name %></li>
+    <div class="data">
+      <button class="btn btn-default" id="load-more" data-id="<%=u.id%>">Load comments</button>
+    </div>
 <% end %>
-
-
-
-
-
-
 
 
 
