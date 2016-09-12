@@ -27,7 +27,7 @@
 
 
 <div class="center">
-  <button class="btn btn-success" id="load-more">Load more pins</button>
+  <%= will_paginate @posts, renderer: BootstrapPagination::Rails %>
 </div>
 
 <script id="pin-template" type="text/x-handlebars-template">

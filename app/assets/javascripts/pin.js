@@ -9,18 +9,8 @@ function Pin(attributes) {
   this.username = attributes.user.name
 }
 
-
 Pin.prototype.renderDisplay = function() {
   return Pin.template(this) // returns the object (pin) itself
-}
-
-function nextPinLoad(pinNumber){
-  $.get("/pins/" + pinNumber + ".json", function(data){
-    var pin = new Pin(data)
-    //debugger;
-    var pinDisplay = pin.renderDisplay()
-    $('#pins').append(pinDisplay)
-  })
 }
 
 $(function(){
@@ -39,19 +29,5 @@ $(function(){
     $('#pinResults').html(pinDisplay)
     $('.js-next').attr('data-id', data['id'])
     });
-  })
-})
-
-//index page load more button
-$(function(){
-  $('#load-more').on('click', function(e){
-    e.preventDefault
-    var lastId = parseInt($('#pins #pin').last().attr('data-id'))
-    var pinOne = lastId - 1
-    nextPinLoad(pinOne)
-    var pinTwo = lastId - 2
-    nextPinLoad(pinTwo)
-    var pinThree = lastId - 3
-    nextPinLoad(pinThree)
   })
 })
