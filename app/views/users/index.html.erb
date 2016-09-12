@@ -1,3 +1,32 @@
 <% @users.all.each do |u| %>
   <li><%= u.name %></li>
+  <button class="btn btn-default" id="load-more">Load comments</button>
 <% end %>
+
+
+
+
+
+
+
+
+
+
+
+<script id="pin-template" type="text/x-handlebars-template">
+  <div class="box panel panel-default" id="pin" data-id="{{id}}">
+    <div class="panel-body">
+      {{description}}<br/>
+      <strong>{{username}}</strong>
+      </div>
+    </div>
+</script>
+
+<script id="comment-template" type="text/x-handlebars-template">
+    <tr>
+      <h1>{{title}}</h1>
+      <div class="body">
+        {{body}}
+      </div>
+    </div>
+</script>
