@@ -10,7 +10,10 @@ class CommentsController < ActionController::Base
     @comment = Comment.new(comment_params)
       @comment.user_id = current_user.id
       if @comment.save
-        redirect_to root_path
+        respond_to do |format|
+          format.html {redirect_to feedback_path}
+          format.json {render json: @comment}
+        end
       else
         render plain: 'There was an error submitting feedback. Please try again'
       end

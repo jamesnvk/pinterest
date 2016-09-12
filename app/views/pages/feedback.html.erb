@@ -1,18 +1,21 @@
-<table class="table table-striped">
-  <thead>
-    <tr> 
-      <th>#</th> <th>Username</th> <th>Comment</th>
-    </tr> 
-  </thead> 
-  <tbody>
-    <% @comments.each do |comment| %>
-     <tr> 
-        <th scope="row"><%= comment.id %></th> 
-        <td><%= comment.username %></td> <td><%= comment.content %></td> 
-    </tr>
-    <% end %>
-   </tbody>
-</table>
+
+  <table class="table table-striped">
+    <thead>
+      <tr> 
+        <th>#</th> <th>Username</th> <th>Comment</th>
+      </tr> 
+    </thead> 
+    <tbody id="feedbackResults">
+      <% @comments.each do |comment| %>
+       <tr> 
+          <th scope="row"><%= comment.id %></th> 
+          <td><%= comment.username %></td> <td><%= comment.content %></td> 
+      </tr>
+      <% end %>
+    </div>
+     </tbody>
+  </table>
+
 
 
 <% if user_signed_in? %>
@@ -25,12 +28,10 @@
 <% end %>
 
 <script id="comment-template" type="text/x-handlebars-template">
-  <tbody>
-     <tr> 
-        <th scope="row"><{{id}}></th> 
-        <td>Username</td> <td>{{content}}</td> 
-    </tr>
-   </tbody>
+   <tr> 
+      <th scope="row">{{id}}</th> 
+      <td><%= current_user.name %></td> <td>{{content}}</td> 
+  </tr>
 </script>
 
 <script id="pin-template" type="text/x-handlebars-template">
