@@ -6,4 +6,5 @@ Rails.application.routes.draw do
   get "/feedback" => "comments#new"
   post "/feedback" => "comments#create"
   get "/users" => "users#index"
+  get "/users/:id" => "users#show"
 end
