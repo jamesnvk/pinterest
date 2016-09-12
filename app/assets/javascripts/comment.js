@@ -9,6 +9,7 @@ Comment.success = function(json){
   var comment = new Comment(json)
   var commentDisplay = comment.renderDisplay()
   $('#feedbackResults').append(commentDisplay)
+  $('#comment_content').val('')
 }
 
 
