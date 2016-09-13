@@ -1,14 +1,9 @@
-
 <% @users.all.each do |u| %>
     <div id="data-<%=u.id%>">
     <li><%= u.name %></li>
     </div>
     <button class="load-more" data-id="<%=u.id%>">Load comments</button>
 <% end %>
-
-
-
-
 
 <script id="pin-template" type="text/x-handlebars-template">
   <div class="box panel panel-default" id="pin" data-id="{{id}}">

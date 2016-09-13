@@ -12,18 +12,7 @@ Comment.success = function(json){
   $('#comment_content').val('')
 }
 
-
-Comment.prototype.renderDisplay = function() {
-  return Comment.template(this) // builds the HTML string json and returns the object (comment) itself
-}
-
-$(function(){
-  Comment.templateSource = $("#comment-template").html() // grabs source of template
-  Comment.template = Handlebars.compile(Comment.templateSource) // Handlebars compiles the given template
-})
-
-
-$(function(){
+Comment.newComment = function(){
   $('.new_comment').on('submit', function(e){
     e.preventDefault()
     var $form = $(this)
@@ -37,4 +26,15 @@ $(function(){
       method: "POST"
     }).success(Comment.success)
   })
+}
+
+Comment.prototype.renderDisplay = function() {
+  return Comment.template(this) // builds the HTML string json and returns the object (comment) itself
+}
+
+$(function(){
+  Comment.templateSource = $("#comment-template").html() // grabs source of template
+  Comment.template = Handlebars.compile(Comment.templateSource) // Handlebars compiles the given template
+  Comment.newComment()
 })
+
