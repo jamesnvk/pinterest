@@ -1,9 +1,9 @@
 
 <% @users.all.each do |u| %>
+    <div id="data-<%=u.id%>">
     <li><%= u.name %></li>
-    <div class="data">
-      <button class="btn btn-default" id="load-more" data-id="<%=u.id%>">Load comments</button>
     </div>
+    <button class="load-more" data-id="<%=u.id%>">Load comments</button>
 <% end %>
 
 
