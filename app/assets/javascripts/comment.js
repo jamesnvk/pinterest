@@ -33,7 +33,7 @@ Comment.prototype.renderDisplay = function() {
 }
 
 $(function(){
-  Comment.templateSource = $("#comment-template").html() // grabs source of template
+  Comment.templateSource = $("#comment-template").html() // grabs template from page
   Comment.template = Handlebars.compile(Comment.templateSource) // Handlebars compiles the given template
   Comment.newComment()
 })
