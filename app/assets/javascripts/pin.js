@@ -10,7 +10,7 @@ function Pin(attributes) {
 }
 
 Pin.prototype.renderDisplay = function() {
-  return Pin.template(this) // returns the object (pin) itself
+  return Pin.template(this) // builds the HTML string json and returns the object (pin) itself
 }
 
 Pin.nextPage = function(){
