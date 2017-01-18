@@ -18,13 +18,28 @@
   Pin.nextPage = function(){
     $('.js-next').on('click', function(e){
       e.preventDefault
+      var currentId = parseInt($('.js-next').attr('data-id'))
       var nextId = parseInt($('.js-next').attr('data-id')) + 1
         $.get("/pins/" + nextId + ".json", function(data) {
           var pin = new Pin(data)
           var pinDisplay = pin.renderDisplay()
             $('#pinResults').html(pinDisplay)
             $('.js-next').attr('data-id', data['id'])
-      });
+        // if next pin page id does not exist
+      }).fail(function(){
+        $.get("/pins.json", function(data){
+          for(let i = 0; i < data.length; i++){
+            // find current id in data array
+            if(data[i].id === currentId){
+              // set new pin to the next nearest id in data array
+              var pin = new Pin(data[i - 1])
+              var pinDisplay = pin.renderDisplay()
+              $('#pinResults').html(pinDisplay)
+              $('.js-next').attr('data-id', data['id'])
+            }
+          }   
+        })
+      })
     })
   }
 
