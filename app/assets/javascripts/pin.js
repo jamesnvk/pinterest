@@ -47,30 +47,10 @@
     })
   }
 
-  Pin.destroy = function(){
-    $('.deletePin').on('click', function(e){
-
-      var action = $(this).attr('href')
-      //debugger
-      $.ajax({
-        url: action,
-        dataType: "json",
-        method: "DELETE"
-      }).success(function(){
-        
-      }).error(function(error){
-        debugger
-        alert("did not succeed")
-      })
-    return false
-    })
-  }
-
   $(function(){
     Pin.templateSource = $("#pin-template").html() // grabs source of template
     Pin.template = Handlebars.compile(Pin.templateSource) // Handlebars compiles the given template
     Pin.nextPage()
-    Pin.destroy()
   })
 
 })();
