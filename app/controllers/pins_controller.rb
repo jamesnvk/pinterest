@@ -6,6 +6,10 @@ class PinsController < ApplicationController
 
   def index
     @pins = Pin.all.order("created_at DESC").paginate(:page => params[:page], :per_page => 8)
+    respond_to do |format|
+      format.html {render :index}
+      format.json {render json: @pins}
+    end
   end
 
 
