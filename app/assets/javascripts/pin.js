@@ -15,16 +15,20 @@
     return Pin.template(this) // builds the HTML string json and returns the object (pin) itself
   }
 
+  function createPin(data){
+    var pin = new Pin(data)
+    var pinDisplay = pin.renderDisplay()
+    $('#pinResults').html(pinDisplay)
+    $('.js-next').attr('data-id', data['id'])
+  }
+
   Pin.nextPage = function(){
     $('.js-next').on('click', function(e){
       e.preventDefault
       var currentId = parseInt($('.js-next').attr('data-id'))
       var nextId = parseInt($('.js-next').attr('data-id')) + 1
         $.get("/pins/" + nextId + ".json", function(data) {
-          var pin = new Pin(data)
-          var pinDisplay = pin.renderDisplay()
-            $('#pinResults').html(pinDisplay)
-            $('.js-next').attr('data-id', data['id'])
+          createPin(data)
         // if next pin page id does not exist
       }).fail(function(){
         $.get("/pins.json", function(data){
